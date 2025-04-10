@@ -1,4 +1,4 @@
-package repositorio;
+package repository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,11 +14,26 @@ public class WorkoutClassRepository {
     private static int idFeedback = 1;
 
     private WorkoutClassRepository() {
-        workoutClasses.add(new WorkoutClass(id++, "Spinning", "Aula intensa de bicicleta estacionária", 45, "Carlos"));
-        workoutClasses.add(new WorkoutClass(id++, "Pilates", "Aula de fortalecimento e alongamento", 60, "Ana"));
-        workoutClasses.add(new WorkoutClass(id++, "HIIT", "Treino intervalado de alta intensidade", 30, "Marcos"));
-        workoutClasses.add(new WorkoutClass(id++, "Alongamento", "Aula focada em flexibilidade e relaxamento", 40, "Bruna"));
+        WorkoutClass spinning = new WorkoutClass(id++, "Spinning", "Aula intensa de bicicleta estacionária", 45, "Carlos");
+        spinning.addFeedback(new Feedback(idFeedback++, "Joana", "Muito puxado, mas valeu a pena!", 5));
+        spinning.addFeedback(new Feedback(idFeedback++, "Pedro", "Poderia ter mais pausas", 3));
+    
+        WorkoutClass pilates = new WorkoutClass(id++, "Pilates", "Aula de fortalecimento e alongamento", 60, "Ana");
+        pilates.addFeedback(new Feedback(idFeedback++, "Marina", "Muito boa pra alongar, adorei!", 5));
+    
+        WorkoutClass hiit = new WorkoutClass(id++, "HIIT", "Treino intervalado de alta intensidade", 30, "Marcos");
+        hiit.addFeedback(new Feedback(idFeedback++, "Luiz", "Intenso demais pra iniciantes", 2));
+    
+        WorkoutClass alongamento = new WorkoutClass(id++, "Alongamento", "Aula focada em flexibilidade e relaxamento", 40, "Bruna");
+        alongamento.addFeedback(new Feedback(idFeedback++, "Renata", "Bem relaxante, ótima depois da musculação", 4));
+        alongamento.addFeedback(new Feedback(idFeedback++, "Felipe", "Muito leve, queria algo mais intenso", 1));
+    
+        workoutClasses.add(spinning);
+        workoutClasses.add(pilates);
+        workoutClasses.add(hiit);
+        workoutClasses.add(alongamento);
     }
+    
 
     public static WorkoutClassRepository getInstance() {
         if (instance == null) {
