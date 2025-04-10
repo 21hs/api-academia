@@ -2,32 +2,31 @@ package classes;
 
 public class Feedback {
     private int id;
-    private String studentName;    // Nome do aluno que recebeu a avaliação
-    private String comment;        // Comentário sobre o aluno
-    private int rating;            // Classificação (nota de 1 a 5)
+    private String memberName;     // Nome do aluno que fez o feedback
+    private String comment;        // Comentário sobre a aula
+    private int rating;            // Classificação da aula (ex: de 1 a 5)
 
     public Feedback() {}
 
-    public Feedback(String studentName, String comment, int rating) {
-        this.studentName = studentName;
+    public Feedback(String memberName, String comment, int rating) {
+        this.memberName = memberName;
         this.comment = comment;
         this.rating = rating;
     }
 
-    public Feedback(int id, String studentName, String comment, int rating) {
+    public Feedback(int id, String memberName, String comment, int rating) {
         this.id = id;
-        this.studentName = studentName;
+        this.memberName = memberName;
         this.comment = comment;
         this.rating = rating;
     }
 
-    // Getters e Setters
     public int getId() {
         return id;
     }
 
     public String getMemberName() {
-        return studentName;
+        return memberName;
     }
 
     public String getComment() {
