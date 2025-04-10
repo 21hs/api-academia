@@ -1,4 +1,4 @@
-package routes;
+package rotas;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -14,8 +14,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import repository.WorkoutClassRepository;
-import services.workoutClassService;
+import repositorio.WorkoutClassRepository;
+import servico.workoutClassService;
 
 @WebServlet("/feedback")
 public class FeedBackServlet extends HttpServlet {

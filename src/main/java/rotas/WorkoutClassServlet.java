@@ -1,4 +1,4 @@
-package routes;
+package rotas;
 
 import java.io.IOException;
 import java.util.List;
@@ -11,7 +11,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import repository.WorkoutClassRepository;
+import repositorio.WorkoutClassRepository;
 
 @WebServlet("/aulas")
 public class WorkoutClassServlet extends HttpServlet {
