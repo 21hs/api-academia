@@ -3,6 +3,8 @@ package classes;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
 public class WorkoutClass {
     private int id;
     private String name; // Nome da aula (ex: Spinning, Pilates)
@@ -55,9 +57,11 @@ public class WorkoutClass {
         return instructor;
     }
 
-    public List<Feedback> getFeedbacks() {
-        return feedbacks;
-    }
+    
+public List<Feedback> getFeedbacks() {
+    return feedbacks;
+}
+
 
     public void addFeedback(Feedback feedback) {
         feedbacks.add(feedback);
