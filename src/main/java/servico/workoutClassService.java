@@ -1,10 +1,10 @@
-package servico;
+package services;
 
 import java.util.List;
 
 import classes.Feedback;
 import classes.WorkoutClass;
-import repositorio.WorkoutClassRepository;
+import repository.WorkoutClassRepository;
 
 public class workoutClassService {
     private WorkoutClassRepository WorkoutClassRepository;
