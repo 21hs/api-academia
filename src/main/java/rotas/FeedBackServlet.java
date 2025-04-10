@@ -1,4 +1,4 @@
-package rotas;
+package routes;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -14,8 +14,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import repositorio.WorkoutClassRepository;
-import servico.workoutClassService;
+import repository.WorkoutClassRepository;
+import services.workoutClassService;
 
 @WebServlet("/feedback")
 public class FeedBackServlet extends HttpServlet {
@@ -30,7 +30,20 @@ public class FeedBackServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int id = Integer.parseInt(req.getParameter("id"));
+        String idParam = req.getParameter("id");
+        if (idParam == null || idParam.isEmpty()) {
+            resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Parâmetro 'id' é obrigatório.");
+            return;
+        }
+
+        int id;
+        try {
+            id = Integer.parseInt(idParam);
+        } catch (NumberFormatException e) {
+            resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Parâmetro 'id' deve ser um número inteiro.");
+            return;
+        }
+
         List<WorkoutClass> classes = workoutService.getWorkoutClasses();
         for (WorkoutClass workoutClass : classes) {
             if (workoutClass.getId() == id) {
@@ -43,22 +56,38 @@ public class FeedBackServlet extends HttpServlet {
                 return;
             }
         }
-        resp.setStatus(404);
+
+        resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String idParam = req.getParameter("id");
+        if (idParam == null || idParam.isEmpty()) {
+            resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Parâmetro 'id' é obrigatório.");
+            return;
+        }
+
+        int id;
+        try {
+            id = Integer.parseInt(idParam);
+        } catch (NumberFormatException e) {
+            resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Parâmetro 'id' deve ser um número inteiro.");
+            return;
+        }
+
         ObjectMapper mapper = new ObjectMapper();
-        int id = Integer.parseInt(req.getParameter("id"));
         Feedback feedback = mapper.readValue(req.getReader(), Feedback.class);
+
         List<WorkoutClass> classes = workoutService.getWorkoutClasses();
         for (WorkoutClass workoutClass : classes) {
             if (workoutClass.getId() == id) {
                 workoutService.addFeedback(id, feedback);
-                resp.setStatus(201);
+                resp.setStatus(HttpServletResponse.SC_CREATED);
                 return;
             }
         }
-        resp.setStatus(404);
+
+        resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
     }
 }
